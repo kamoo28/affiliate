@@ -1,8 +1,8 @@
 import React, { useRef, useEffect } from "react";
 
-// 🎯 FASTER SCROLL SPEEDS FOR BETTER VISUAL IMPACT
-const SCROLL_SPEED_DESKTOP = 15; // Faster desktop speed
-const SCROLL_SPEED_MOBILE = 10;  // Faster mobile speed
+// 🎯 MUCH FASTER SCROLL SPEEDS FOR BETTER VISUAL IMPACT
+const SCROLL_SPEED_DESKTOP = 8;  // Much faster desktop speed (was 15s)
+const SCROLL_SPEED_MOBILE = 6;   // Much faster mobile speed (was 10s)
 
 // High-quality colorful brand logos from reliable sources
 const brandLogos = [
