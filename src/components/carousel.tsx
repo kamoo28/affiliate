@@ -1,8 +1,8 @@
 import React, { useRef, useEffect } from "react";
 
-// 🎯 OPTIMIZED SCROLL SPEEDS FOR SMOOTH INFINITE SCROLLING
-const SCROLL_SPEED_DESKTOP = 25;  // Smooth desktop speed for seamless loop
-const SCROLL_SPEED_MOBILE = 20;   // Smooth mobile speed for seamless loop
+// 🎯 MUCH FASTER SCROLL SPEEDS FOR BETTER VISUAL IMPACT
+const SCROLL_SPEED_DESKTOP = 8;  // Much faster desktop speed (was 15s)
+const SCROLL_SPEED_MOBILE = 6;   // Much faster mobile speed (was 10s)
 
 // High-quality colorful brand logos from reliable sources
 const brandLogos = [
@@ -133,25 +133,29 @@ const Carousel: React.FC = () => {
           <div className="absolute right-0 top-0 w-20 md:w-40 h-full bg-gradient-to-l from-background via-background/80 to-transparent z-10"></div>
           
           <div
-            className="flex gap-6 md:gap-10 whitespace-nowrap cursor-grab active:cursor-grabbing animate-scroll-infinite"
+            className="flex gap-6 md:gap-10 whitespace-nowrap cursor-grab active:cursor-grabbing"
             ref={scrollRef}
+            style={{
+              animation: `scrollLeft ${scrollSpeed}s linear infinite`,
+              willChange: "transform",
+            }}
           >
-            {/* Duplicate logos multiple times for truly seamless infinite scroll */}
-            {[...brandLogos, ...brandLogos, ...brandLogos, ...brandLogos].map((brand, index) => (
+            {/* Triple the logos for seamless loop */}
+            {[...brandLogos, ...brandLogos, ...brandLogos].map((brand, index) => (
               <div 
                 key={`${brand.name}-${index}`}
-                className="flex-shrink-0 w-32 h-16 md:w-52 md:h-26 flex items-center justify-center bg-white/95 backdrop-blur-sm rounded-xl shadow-md hover:shadow-xl transition-all duration-300 hover:scale-105 group border border-gray-100/50"
+                className="flex-shrink-0 w-28 h-14 md:w-48 md:h-24 flex items-center justify-center bg-white/90 backdrop-blur-sm rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 hover:scale-105 group border border-gray-100"
               >
                 <img
                   src={brand.url}
                   alt={`${brand.name} logo`}
-                  className="w-full h-full object-contain p-4 md:p-5 transition-all duration-300 group-hover:scale-110 filter brightness-110 contrast-110"
+                  className="w-full h-full object-contain p-3 md:p-4 transition-all duration-300 group-hover:scale-110"
                   loading="lazy"
                   onError={(e) => {
                     // Fallback to SVG logo if image fails to load
                     const target = e.target as HTMLImageElement;
                     target.src = brand.fallback;
-                    target.className = "w-full h-full object-contain p-4 md:p-5 transition-all duration-300 group-hover:scale-110";
+                    target.className = "w-full h-full object-contain p-3 md:p-4 filter grayscale-0 transition-all duration-300 group-hover:scale-110";
                   }}
                 />
               </div>
@@ -177,29 +181,18 @@ const Carousel: React.FC = () => {
       </div>
 
       <style>{`
-        .animate-scroll-infinite {
-          animation: scrollInfinite ${scrollSpeed}s linear infinite;
-        }
-        
-        @keyframes scrollInfinite {
+        @keyframes scrollLeft {
           0% {
             transform: translateX(0);
           }
           100% {
-            transform: translateX(-25%);
+            transform: translateX(-33.333%);
           }
         }
         
-        /* Pause animation when user interacts */
+        /* Pause animation on hover for better UX */
         .cursor-grabbing {
           animation-play-state: paused !important;
-        }
-        
-        /* Smooth hardware acceleration */
-        .animate-scroll-infinite {
-          will-change: transform;
-          backface-visibility: hidden;
-          perspective: 1000px;
         }
       `}</style>
     </section>
