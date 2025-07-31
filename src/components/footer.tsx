@@ -4,7 +4,18 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid md:grid-cols-4 gap-8">
           <div>
-            <span className="text-2xl font-black text-gradient mb-4 block">EcommerceExperts</span>
+            <div className="flex items-center gap-3 mb-4">
+              <img 
+                src="/assets/logo.png" 
+                alt="Company Logo" 
+                className="w-8 h-8 rounded-lg object-contain"
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement;
+                  target.style.display = 'none';
+                }}
+              />
+              <span className="text-2xl font-black text-gradient">EcommerceExperts</span>
+            </div>
             <p className="text-muted-foreground">
               Your E-commerce & Digital Marketing Growth Partner
             </p>
