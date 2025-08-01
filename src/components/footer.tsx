@@ -1,4 +1,13 @@
+import { useLocation } from "wouter";
+
 export default function Footer() {
+  const [, setLocation] = useLocation();
+
+  const handleNavigation = (path: string) => {
+    setLocation(path);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <footer className="bg-background border-t border-border py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -12,27 +21,27 @@ export default function Footer() {
           <div>
             <h4 className="font-semibold mb-4">Services</h4>
             <ul className="space-y-2 text-muted-foreground">
-              <li><a href="#" className="hover:text-primary transition-colors">Influencer Marketing</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">SEO Optimization</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">Amazon Listing</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">Flipkart Management</a></li>
+              <li><button onClick={() => handleNavigation('/#services')} className="hover:text-primary transition-colors text-left">Influencer Marketing</button></li>
+              <li><button onClick={() => handleNavigation('/#services')} className="hover:text-primary transition-colors text-left">SEO Optimization</button></li>
+              <li><button onClick={() => handleNavigation('/#services')} className="hover:text-primary transition-colors text-left">Amazon Listing</button></li>
+              <li><button onClick={() => handleNavigation('/#services')} className="hover:text-primary transition-colors text-left">Flipkart Management</button></li>
             </ul>
           </div>
           <div>
             <h4 className="font-semibold mb-4">Company</h4>
             <ul className="space-y-2 text-muted-foreground">
-              <li><a href="#" className="hover:text-primary transition-colors">About Us</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">Careers</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">News</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">Contact</a></li>
+              <li><button onClick={() => handleNavigation('/#about')} className="hover:text-primary transition-colors text-left">About Us</button></li>
+              <li><button onClick={() => handleNavigation('/#contact')} className="hover:text-primary transition-colors text-left">Careers</button></li>
+              <li><button onClick={() => handleNavigation('/#work')} className="hover:text-primary transition-colors text-left">Portfolio</button></li>
+              <li><button onClick={() => handleNavigation('/#contact')} className="hover:text-primary transition-colors text-left">Contact</button></li>
             </ul>
           </div>
           <div>
             <h4 className="font-semibold mb-4">Legal</h4>
             <ul className="space-y-2 text-muted-foreground">
-              <li><a href="#" className="hover:text-primary transition-colors">Privacy Policy</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">Terms of Service</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">Cookie Policy</a></li>
+              <li><button onClick={() => handleNavigation('/privacy-policy')} className="hover:text-primary transition-colors text-left">Privacy Policy</button></li>
+              <li><button onClick={() => handleNavigation('/terms-of-service')} className="hover:text-primary transition-colors text-left">Terms of Service</button></li>
+              <li><button onClick={() => handleNavigation('/cookies-policy')} className="hover:text-primary transition-colors text-left">Cookie Policy</button></li>
             </ul>
           </div>
         </div>
